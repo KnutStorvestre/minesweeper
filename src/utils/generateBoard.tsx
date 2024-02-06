@@ -4,19 +4,13 @@ export default function GenerateBoard(
   numMines: number
 ) {
   const numCells = numRows * numCols;
-  const board: number[] = generateMines(numMines, numCells, numRows);
+  const board: number[] = generateMines(numMines, numCells, numCols);
 
   return board;
 }
 
-function generateMines(
-  numMines: number,
-  numCells: number,
-  //numRows: number,
-  numCols: number
-) {
+function generateMines(numMines: number, numCells: number, numCols: number) {
   let board: number[] = Array(numCells).fill(null);
-  // const [hi, setHi] = useState(null);
 
   for (let i = 0; i < numMines; i++) {
     let randomIndex: number;
@@ -24,7 +18,7 @@ function generateMines(
       randomIndex = Math.floor(Math.random() * numCells);
     } while (board[randomIndex] !== null);
     board[randomIndex] = -1;
-    board = incrementCellsAroundIndex(i, numCols, numCells, board);
+    board = incrementCellsAroundIndex(randomIndex, numCols, numCells, board);
   }
 
   return board;

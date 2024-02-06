@@ -3,12 +3,15 @@ import Board from "./content/Board";
 import GenerateBoard from "./utils/generateBoard";
 
 export default function App() {
-  // create a function
-  const grid: number[] = GenerateBoard(3, 3, 1);
+  const numRows = 4;
+  const numColumns = 4;
+  const numMines = 2;
+
+  const grid: number[] = GenerateBoard(numRows, numColumns, numMines);
   console.log(grid);
 
   return (
     // <h1>hi</h1>
-    <Board numRows={4} numCols={4} grid={grid} />
+    <Board numRows={numRows} numCols={numColumns} grid={grid} />
   );
 }

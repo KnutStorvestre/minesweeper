@@ -1,16 +1,37 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import "./Board.css";
 
-export default function Board(
-  numRows: number,
-  numCols: number,
-  grid: number[]
-) {
-  const [isVisible, setIsVisible] = useState(
+interface CellProps {
+  value: number;
+  visible: boolean;
+  onCellClick: () => void;
+}
+
+const Cell: React.FC<CellProps> = ({ value, visible, onCellClick }) => {
+  return (
+    <button
+      className="cell"
+      onClick={onCellClick}
+      style={{ background: visible ? "#fff" : "lightgray" }}
+    >
+      {visible ? value : null}
+    </button>
+  );
+};
+
+interface BoardProps {
+  numRows: number;
+  numCols: number;
+  grid: number[];
+}
+
+const Board: React.FC<BoardProps> = ({ numRows, numCols, grid }) => {
+  const [isVisible, setIsVisible] = useState<boolean[]>(
     Array(numRows * numCols).fill(true)
   );
 
   function handleClick(i: number) {
-    const newIsVisible = isVisible.slice();
+    const newIsVisible = [...isVisible];
     newIsVisible[i] = true;
     setIsVisible(newIsVisible);
   }
@@ -36,17 +57,7 @@ export default function Board(
     );
   }
 
-  return <>{grid}</>;
-}
+  return <>{board}</>;
+};
 
-function Cell(value: number, visible: boolean, onCellClick) {
-  return (
-    <button
-      className="cell"
-      onClick={onCellClick}
-      style={{ background: visible ? "#fff" : "lightgray" }}
-    >
-      {visible ? value : null}
-    </button>
-  );
-}
+export default Board;
