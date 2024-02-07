@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Board.css";
 
 interface CellProps {
-  value: number;
+  value: number | null;
   visible: boolean;
   onCellClick: () => void;
 }
@@ -22,18 +22,93 @@ const Cell: React.FC<CellProps> = ({ value, visible, onCellClick }) => {
 interface BoardProps {
   numRows: number;
   numCols: number;
-  grid: number[];
+  grid: (number | null)[];
 }
 
 const Board: React.FC<BoardProps> = ({ numRows, numCols, grid }) => {
   const [isVisible, setIsVisible] = useState<boolean[]>(
-    Array(numRows * numCols).fill(true)
+    Array(numRows * numCols).fill(false)
   );
 
   function handleClick(i: number) {
+    if (isVisible[i]) {
+      return;
+    }
     const newIsVisible = [...isVisible];
+    // Recommended to keep immutability
+    const newGrid = [...grid];
     newIsVisible[i] = true;
     setIsVisible(newIsVisible);
+    if (grid[i] === null) {
+      setNullCellsVisible(i, newIsVisible, newGrid);
+    } else {
+      setIsVisible(newIsVisible);
+    }
+  }
+
+  // Sets all cells with null value directly or indirectly around the index to visible
+  // uses the DFS-algorithm
+  function setNullCellsVisible(
+    index: number,
+    newIsVisible: boolean[],
+    newGrid: (number | null)[]
+  ) {
+    // const newIsVisible = isVisible.slice();
+    // newIsVisible[index] = true;
+    // setIsVisible(newIsVisible);
+
+    const dfs = (cellIndex: number) => {
+      const nullNeighbors = getNullNeighbors(cellIndex);
+      for (const nullNeighbor of nullNeighbors) {
+        if (!newIsVisible[nullNeighbor] && newGrid[nullNeighbor] === null) {
+          newIsVisible[nullNeighbor] = true;
+          dfs(nullNeighbor);
+        }
+      }
+    };
+
+    dfs(index);
+    setIsVisible(newIsVisible);
+  }
+
+  function getNullNeighbors(index: number) {
+    const cellAboveLeft = index - numCols - 1;
+    const cellAbove = index - numCols;
+    const cellAboveRight = index - numCols + 1;
+
+    const cellLeft = index - 1;
+    const cellRight = index + 1;
+
+    const cellBelowLeft = index + numCols - 1;
+    const cellBelow = index + numCols;
+    const cellBelowRight = index + numCols + 1;
+
+    const nullNeighbors: number[] = [];
+
+    // above cells
+    if (index >= numCols) {
+      // above left
+      if (index % numCols !== 0) {
+        if (!isVisible[cellAboveLeft] && grid[cellAboveLeft] === null) {
+          // setNullCellsVisible(cellAboveLeft);
+          nullNeighbors.push(cellAboveLeft);
+        }
+      }
+      // above
+      if (!isVisible[cellAbove] && grid[cellAbove] === null) {
+        // setNullCellsVisible(cellAbove);
+        nullNeighbors.push(cellAbove);
+      }
+      //above right
+      if ((index + 1) % numCols !== 0) {
+        if (!isVisible[cellAboveRight] && grid[cellAboveRight] === null) {
+          // setNullCellsVisible(cellAboveRight);
+          nullNeighbors.push(cellAboveRight);
+        }
+      }
+    }
+
+    return nullNeighbors;
   }
 
   const board = [];
