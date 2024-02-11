@@ -1,4 +1,4 @@
-export default function GenerateBoard(
+export default function generateBoard(
   numRows: number,
   numCols: number,
   numMines: number
