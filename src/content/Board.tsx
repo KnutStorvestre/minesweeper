@@ -58,7 +58,7 @@ const Board: React.FC<BoardProps> = ({ numRows, numCols, grid }) => {
     // setIsVisible(newIsVisible);
 
     const dfs = (cellIndex: number) => {
-      const nullNeighbors = getNullNeighbors(cellIndex);
+      const nullNeighbors = getNeighbors(cellIndex);
       for (const nullNeighbor of nullNeighbors) {
         if (!newIsVisible[nullNeighbor] && newGrid[nullNeighbor] === null) {
           newIsVisible[nullNeighbor] = true;
@@ -71,7 +71,8 @@ const Board: React.FC<BoardProps> = ({ numRows, numCols, grid }) => {
     setIsVisible(newIsVisible);
   }
 
-  function getNullNeighbors(index: number) {
+  function getNeighbors(index: number) {
+    const numCells = numRows * numCols;
     const cellAboveLeft = index - numCols - 1;
     const cellAbove = index - numCols;
     const cellAboveRight = index - numCols + 1;
@@ -89,22 +90,36 @@ const Board: React.FC<BoardProps> = ({ numRows, numCols, grid }) => {
     if (index >= numCols) {
       // above left
       if (index % numCols !== 0) {
-        if (!isVisible[cellAboveLeft] && grid[cellAboveLeft] === null) {
-          // setNullCellsVisible(cellAboveLeft);
-          nullNeighbors.push(cellAboveLeft);
-        }
+        nullNeighbors.push(cellAboveLeft);
       }
       // above
-      if (!isVisible[cellAbove] && grid[cellAbove] === null) {
-        // setNullCellsVisible(cellAbove);
-        nullNeighbors.push(cellAbove);
-      }
+      nullNeighbors.push(cellAbove);
       //above right
       if ((index + 1) % numCols !== 0) {
-        if (!isVisible[cellAboveRight] && grid[cellAboveRight] === null) {
-          // setNullCellsVisible(cellAboveRight);
-          nullNeighbors.push(cellAboveRight);
-        }
+        nullNeighbors.push(cellAboveRight);
+      }
+    }
+
+    // left
+    if (index % numCols !== 0) {
+      nullNeighbors.push(cellLeft);
+    }
+    // right
+    if ((index + 1) % numCols !== 0) {
+      nullNeighbors.push(cellRight);
+    }
+
+    // bellow cells
+    if (index < numCells - numCols) {
+      // bellow left
+      if (index % numCols !== 0) {
+        nullNeighbors.push(cellBelowLeft);
+      }
+      // bellow
+      nullNeighbors.push(cellBelow);
+      //bellow right
+      if ((index + 1) % numCols !== 0) {
+        nullNeighbors.push(cellBelowRight);
       }
     }
 
