@@ -55,12 +55,7 @@ const Board: React.FC<BoardProps> = ({ numRows, numCols, grid }) => {
     newIsVisible: boolean[],
     newGrid: (number | null)[]
   ) {
-    // const newIsVisible = isVisible.slice();
-    // newIsVisible[index] = true;
-    // setIsVisible(newIsVisible);
-
     const dfs = (cellIndex: number) => {
-      // const neighbors = getNeighbors(cellIndex);
       const neighbors = getNeighbors(cellIndex, numRows, numCols);
       for (const nullNeighbor of neighbors) {
         if (!newIsVisible[nullNeighbor] && newGrid[nullNeighbor] === null) {
