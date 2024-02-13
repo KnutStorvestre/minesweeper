@@ -4,55 +4,45 @@ export default function generateBoard(
   numRows: number,
   numCols: number,
   numMines: number
-) {
-  // const numCells = numRows * numCols;
-  const board = generateMines(numRows, numCols, numMines);
-
-  return board;
-}
-
-function generateMines(
-  numRows: number,
-  numCols: number,
-  numMines: number
 ): (number | null)[] {
   const numCells = numRows * numCols;
-  let board: (number | null)[] = Array(numCells).fill(null);
+  const board: (number | null)[] = Array(numCells).fill(null);
 
   for (let i = 0; i < numMines; i++) {
-    let randomIndex: number;
-    do {
-      randomIndex = Math.floor(Math.random() * numCells);
-    } while (board[randomIndex] !== null);
+    const randomIndex = getRandomEmptyIndex(numCells, board);
     board[randomIndex] = -1;
-    // board = incrementCellsAroundIndex(randomIndex, numCols, numCells, board);
-    board = incrementCellsAroundIndex2(randomIndex, numRows, numCols, board);
+    incrementNeighborCells(randomIndex, numRows, numCols, board);
   }
 
   return board;
 }
 
-function incrementCellsAroundIndex2(
+function getRandomEmptyIndex(
+  numCells: number,
+  board: (number | null)[]
+): number {
+  let randomIndex: number;
+  do {
+    randomIndex = Math.floor(Math.random() * numCells);
+  } while (board[randomIndex] !== null);
+  return randomIndex;
+}
+
+function incrementNeighborCells(
   index: number,
   numRows: number,
   numCols: number,
-  CellVals: (number | null)[]
+  cellValues: (number | null)[]
 ) {
-  const newCells = CellVals.slice();
   const neighborsIndices = getNeighbors(index, numRows, numCols);
   for (const neighborIndex of neighborsIndices) {
-    if (!checkIfMine(neighborIndex, CellVals)) {
-      if (CellVals[neighborIndex] !== null) {
-        newCells[neighborIndex] = (CellVals[neighborIndex] as number) + 1;
-      } else {
-        newCells[neighborIndex] = 1;
-      }
+    if (!isMine(neighborIndex, cellValues)) {
+      const currentValue = cellValues[neighborIndex] ?? 0;
+      cellValues[neighborIndex] = currentValue + 1;
     }
   }
-
-  return newCells;
 }
 
-function checkIfMine(i: number, CellVals: (number | null)[]) {
-  return CellVals[i] === -1;
+function isMine(i: number, cellValues: (number | null)[]) {
+  return cellValues[i] === -1;
 }
