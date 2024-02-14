@@ -4,7 +4,7 @@ import "./Board.css";
 import getNeighbors from "../utils/getNeighbors";
 
 interface CellProps {
-  value: number | null;
+  value: number;
   visible: boolean;
   onCellClick: () => void;
 }
@@ -16,7 +16,7 @@ const Cell: React.FC<CellProps> = ({ value, visible, onCellClick }) => {
       onClick={onCellClick}
       style={{ background: visible ? "#fff" : "lightgray" }}
     >
-      {visible ? value : null}
+      {visible && value !== 0 ? value : null}
     </button>
   );
 };
@@ -24,7 +24,7 @@ const Cell: React.FC<CellProps> = ({ value, visible, onCellClick }) => {
 interface BoardProps {
   numRows: number;
   numCols: number;
-  grid: (number | null)[];
+  grid: number[];
 }
 
 const Board: React.FC<BoardProps> = ({ numRows, numCols, grid }) => {
@@ -37,11 +37,10 @@ const Board: React.FC<BoardProps> = ({ numRows, numCols, grid }) => {
       return;
     }
     const newIsVisible = [...isVisible];
-    // Recommended to keep immutability
     const newGrid = [...grid];
     newIsVisible[i] = true;
     setIsVisible(newIsVisible);
-    if (grid[i] === null) {
+    if (grid[i] === 0) {
       setNullCellsVisible(i, newIsVisible, newGrid);
     } else {
       setIsVisible(newIsVisible);
@@ -53,12 +52,12 @@ const Board: React.FC<BoardProps> = ({ numRows, numCols, grid }) => {
   function setNullCellsVisible(
     index: number,
     newIsVisible: boolean[],
-    newGrid: (number | null)[]
+    newGrid: number[]
   ) {
     const dfs = (cellIndex: number) => {
       const neighbors = getNeighbors(cellIndex, numRows, numCols);
       for (const nullNeighbor of neighbors) {
-        if (!newIsVisible[nullNeighbor] && newGrid[nullNeighbor] === null) {
+        if (!newIsVisible[nullNeighbor] && newGrid[nullNeighbor] === 0) {
           newIsVisible[nullNeighbor] = true;
           dfs(nullNeighbor);
         }

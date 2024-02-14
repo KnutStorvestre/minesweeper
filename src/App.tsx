@@ -1,10 +1,10 @@
 import Board from "./content/Board";
-import generateBoard from "./utils/generateBoard";
+import generateBoard from "./utils/generateBoard.ts";
 
 export default function App() {
-  const numRows = 4;
-  const numColumns = 4;
-  const numMines = 3;
+  const numRows = 5;
+  const numColumns = 7;
+  const numMines = 2;
 
   const grid = generateBoard(numRows, numColumns, numMines);
 
