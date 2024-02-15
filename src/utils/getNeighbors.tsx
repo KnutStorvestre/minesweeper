@@ -2,57 +2,30 @@ export default function getNeighbors(
   index: number,
   numRows: number,
   numCols: number
-) {
-  const numCells = numRows * numCols;
-  const cellAboveLeft = index - numCols - 1;
-  const cellAbove = index - numCols;
-  const cellAboveRight = index - numCols + 1;
+): number[] {
+  const row = Math.floor(index / numCols);
+  const col = index % numCols;
+  const neighbors: number[] = [];
 
-  const cellLeft = index - 1;
-  const cellRight = index + 1;
+  for (let dRow = -1; dRow <= 1; dRow++) {
+    for (let dCol = -1; dCol <= 1; dCol++) {
+      if (dRow === 0 && dCol === 0) {
+        continue;
+      }
 
-  const cellBelowLeft = index + numCols - 1;
-  const cellBelow = index + numCols;
-  const cellBelowRight = index + numCols + 1;
+      const neighborRow = row + dRow;
+      const neighborCol = col + dCol;
 
-  const nullNeighbors: number[] = [];
-
-  // above cells
-  if (index >= numCols) {
-    // above left
-    if (index % numCols !== 0) {
-      nullNeighbors.push(cellAboveLeft);
-    }
-    // above
-    nullNeighbors.push(cellAbove);
-    //above right
-    if ((index + 1) % numCols !== 0) {
-      nullNeighbors.push(cellAboveRight);
+      if (
+        neighborRow >= 0 &&
+        neighborRow < numRows &&
+        neighborCol >= 0 &&
+        neighborCol < numCols
+      ) {
+        neighbors.push(neighborRow * numCols + neighborCol);
+      }
     }
   }
 
-  // left
-  if (index % numCols !== 0) {
-    nullNeighbors.push(cellLeft);
-  }
-  // right
-  if ((index + 1) % numCols !== 0) {
-    nullNeighbors.push(cellRight);
-  }
-
-  // bellow cells
-  if (index < numCells - numCols) {
-    // bellow left
-    if (index % numCols !== 0) {
-      nullNeighbors.push(cellBelowLeft);
-    }
-    // bellow
-    nullNeighbors.push(cellBelow);
-    //bellow right
-    if ((index + 1) % numCols !== 0) {
-      nullNeighbors.push(cellBelowRight);
-    }
-  }
-
-  return nullNeighbors;
+  return neighbors;
 }
