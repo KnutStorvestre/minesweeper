@@ -1,41 +1,24 @@
 import generateBoard from "../utils/generateBoard";
 
 describe("generateBoard", () => {
-  it("should generate a board with the correct dimensions", () => {
-    const numRows = 5;
-    const numCols = 5;
-    const numMines = 3;
+  const numRows = 5;
+  const numCols = 5;
+  const numMines = 5;
+
+  test("board has correct size", () => {
     const board = generateBoard(numRows, numCols, numMines);
     expect(board.length).toBe(numRows * numCols);
   });
-});
 
-/*
-import React from "react";
-import { render, screen } from "@testing-library/react";
-import Board from "../components/Board";
-
-describe("Board", () => {
-  it("should render the board with the correct number of cells", () => {
-    const numRows = 5;
-    const numCols = 5;
-    const numMines = 3;
-    render(<Board numRows={numRows} numCols={numCols} numMines={numMines} />);
-    const cells = screen.getAllByTestId("cell");
-    expect(cells.length).toBe(numRows * numCols);
+  test("board contains correct number of mines", () => {
+    const board = generateBoard(numRows, numCols, numMines);
+    const mineCount = board.filter((cell) => cell === -1).length;
+    expect(mineCount).toBe(numMines);
   });
 
-  it("should reveal the clicked cell when clicked", () => {
-    const numRows = 5;
-    const numCols = 5;
-    const numMines = 3;
-    render(<Board numRows={numRows} numCols={numCols} numMines={numMines} />);
-    const cell = screen.getByTestId("cell-0-0");
-    fireEvent.click(cell);
-    expect(cell).toHaveClass("revealed");
+  test("mines are placed randomly", () => {
+    const board1 = generateBoard(numRows, numCols, numMines);
+    const board2 = generateBoard(numRows, numCols, numMines);
+    expect(board1).not.toEqual(board2);
   });
-
-  // Add more tests as needed...
-
 });
-*/
