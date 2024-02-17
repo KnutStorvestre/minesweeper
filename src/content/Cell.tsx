@@ -1,6 +1,7 @@
 interface CellProps {
   value: number;
   visible: boolean;
+  flagged: boolean;
   onCellClick: () => void;
   onRightClick: (event: React.MouseEvent) => void;
 }
@@ -8,6 +9,7 @@ interface CellProps {
 const Cell: React.FC<CellProps> = ({
   value,
   visible,
+  flagged,
   onCellClick,
   onRightClick,
 }) => {
@@ -18,7 +20,7 @@ const Cell: React.FC<CellProps> = ({
       onContextMenu={onRightClick}
       style={{ background: visible ? "#fff" : "lightgray" }}
     >
-      {visible && value !== 0 ? value : null}
+      {visible ? (value !== 0 ? value : null) : flagged ? "🚩" : null}
     </button>
   );
 };

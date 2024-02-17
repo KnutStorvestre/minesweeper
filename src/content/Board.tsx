@@ -4,8 +4,6 @@ import "./Board.css";
 import getNeighbors from "../utils/getNeighbors";
 import Cell from "./Cell";
 
-// Delete this when done, but here is a "🚩"
-
 interface BoardProps {
   numRows: number;
   numCols: number;
@@ -16,9 +14,12 @@ const Board: React.FC<BoardProps> = ({ numRows, numCols, grid }) => {
   const [isVisible, setIsVisible] = useState<boolean[]>(
     Array(numRows * numCols).fill(false)
   );
+  const [isFlagged, setIsFlagged] = useState<boolean[]>(
+    Array(numRows * numCols).fill(false)
+  );
 
   function handleClick(i: number) {
-    if (isVisible[i]) {
+    if (isVisible[i] || isFlagged[i]) {
       return;
     }
     const newIsVisible = [...isVisible];
@@ -32,11 +33,15 @@ const Board: React.FC<BoardProps> = ({ numRows, numCols, grid }) => {
     }
   }
 
-  const handleRightClick = (event: React.MouseEvent, cellNum: number) => {
+  const handleRightClick = (event: React.MouseEvent, i: number) => {
     event.preventDefault();
-    // console.log("Right click");
-    // Implement the logic for right-click action
-    // For example, toggle a flag state for the cell
+    if (isVisible[i]) {
+      return;
+    }
+    // toggle flag
+    const newIsFlagged = [...isFlagged];
+    newIsFlagged[i] = !newIsFlagged[i];
+    setIsFlagged(newIsFlagged);
   };
 
   // Sets all cells with null value directly or indirectly around the index to visible
@@ -72,6 +77,7 @@ const Board: React.FC<BoardProps> = ({ numRows, numCols, grid }) => {
           key={cellNum}
           value={grid[cellNum]}
           visible={isVisible[cellNum]}
+          flagged={isFlagged[cellNum]}
           onCellClick={() => handleClick(cellNum)}
           onRightClick={(event) => handleRightClick(event, cellNum)}
         />
