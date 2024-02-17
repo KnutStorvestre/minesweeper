@@ -7,13 +7,20 @@ interface CellProps {
   value: number;
   visible: boolean;
   onCellClick: () => void;
+  onRightClick: (event: React.MouseEvent) => void;
 }
 
-const Cell: React.FC<CellProps> = ({ value, visible, onCellClick }) => {
+const Cell: React.FC<CellProps> = ({
+  value,
+  visible,
+  onCellClick,
+  onRightClick,
+}) => {
   return (
     <button
       className="cell"
       onClick={onCellClick}
+      onContextMenu={onRightClick}
       style={{ background: visible ? "#fff" : "lightgray" }}
     >
       {visible && value !== 0 ? value : null}
@@ -47,6 +54,14 @@ const Board: React.FC<BoardProps> = ({ numRows, numCols, grid }) => {
     }
   }
 
+  const handleRightClick = (event: React.MouseEvent, cellNum: number) => {
+    event.preventDefault();
+
+    // console.log("Right click");
+    // Implement the logic for right-click action
+    // For example, toggle a flag state for the cell
+  };
+
   // Sets all cells with null value directly or indirectly around the index to visible
   // uses the DFS-algorithm
   function setNullCellsVisible(
@@ -56,10 +71,12 @@ const Board: React.FC<BoardProps> = ({ numRows, numCols, grid }) => {
   ) {
     const dfs = (cellIndex: number) => {
       const neighbors = getNeighbors(cellIndex, numRows, numCols);
-      for (const nullNeighbor of neighbors) {
-        if (!newIsVisible[nullNeighbor] && newGrid[nullNeighbor] === 0) {
-          newIsVisible[nullNeighbor] = true;
-          dfs(nullNeighbor);
+      for (const neighbor of neighbors) {
+        if (!newIsVisible[neighbor]) {
+          newIsVisible[neighbor] = true;
+          if (newGrid[neighbor] === 0) {
+            dfs(neighbor);
+          }
         }
       }
     };
@@ -79,6 +96,7 @@ const Board: React.FC<BoardProps> = ({ numRows, numCols, grid }) => {
           value={grid[cellNum]}
           visible={isVisible[cellNum]}
           onCellClick={() => handleClick(cellNum)}
+          onRightClick={(event) => handleRightClick(event, cellNum)}
         />
       );
     }
