@@ -2,31 +2,9 @@ import React, { useState } from "react";
 import "../utils/getNeighbors";
 import "./Board.css";
 import getNeighbors from "../utils/getNeighbors";
+import Cell from "./Cell";
 
-interface CellProps {
-  value: number;
-  visible: boolean;
-  onCellClick: () => void;
-  onRightClick: (event: React.MouseEvent) => void;
-}
-
-const Cell: React.FC<CellProps> = ({
-  value,
-  visible,
-  onCellClick,
-  onRightClick,
-}) => {
-  return (
-    <button
-      className="cell"
-      onClick={onCellClick}
-      onContextMenu={onRightClick}
-      style={{ background: visible ? "#fff" : "lightgray" }}
-    >
-      {visible && value !== 0 ? value : null}
-    </button>
-  );
-};
+// Delete this when done, but here is a "🚩"
 
 interface BoardProps {
   numRows: number;
@@ -56,7 +34,6 @@ const Board: React.FC<BoardProps> = ({ numRows, numCols, grid }) => {
 
   const handleRightClick = (event: React.MouseEvent, cellNum: number) => {
     event.preventDefault();
-
     // console.log("Right click");
     // Implement the logic for right-click action
     // For example, toggle a flag state for the cell
