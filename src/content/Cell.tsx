@@ -37,6 +37,4 @@ const Cell: React.FC<CellProps> = ({
   );
 };
 
-// className={`cell ${visible ? "visible" : ""} ${visible && value === 1 ? "one" : ""}`}
-
 export default Cell;
