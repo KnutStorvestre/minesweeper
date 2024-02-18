@@ -1,3 +1,5 @@
+import "./Cell.css";
+
 interface CellProps {
   value: number;
   visible: boolean;
@@ -15,10 +17,9 @@ const Cell: React.FC<CellProps> = ({
 }) => {
   return (
     <button
-      className="cell"
+      className={"cell" + (visible ? " visible" : "")}
       onClick={onCellClick}
       onContextMenu={onRightClick}
-      style={{ background: visible ? "#fff" : "lightgray" }}
     >
       {visible ? (value !== 0 ? value : null) : flagged ? "🚩" : null}
     </button>
