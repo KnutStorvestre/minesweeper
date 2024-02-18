@@ -17,7 +17,13 @@ const Cell: React.FC<CellProps> = ({
 }) => {
   return (
     <button
-      className={"cell" + (visible ? " visible" : "")}
+      className={
+        "cell" +
+        (visible
+          ? " visible" + (value === 1 ? " one" : "")
+          : //(value === 2 ? " two" : "")
+            "")
+      }
       onClick={onCellClick}
       onContextMenu={onRightClick}
     >
@@ -25,5 +31,7 @@ const Cell: React.FC<CellProps> = ({
     </button>
   );
 };
+
+// className={`cell ${visible ? "visible" : ""} ${visible && value === 1 ? "one" : ""}`}
 
 export default Cell;

@@ -11,11 +11,17 @@
   .cell.visible {
     background-color: white;
   }
+
+  .cell.visible.one {
+    color: blue;
+  }
   
+  /*
   .cell:hover {
-    background-color: #ddd;
+    background-color: blueviolet;
   }
   
   .cell:active {
     background-color: #bbb;
   }
+  */

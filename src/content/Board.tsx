@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "../utils/getNeighbors";
-import "./Board.css";
 import getNeighbors from "../utils/getNeighbors";
 import Cell from "./Cell";
+import "./Board.css";
 
 interface BoardProps {
   numRows: number;
