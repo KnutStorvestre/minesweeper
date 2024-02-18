@@ -15,7 +15,34 @@
   .cell.visible.one {
     color: blue;
   }
+
+  .cell.visible.two {
+    color: green;
+  }
   
+  .cell.visible.three {
+    color: red;
+  }
+
+  .cell.visible.four {
+    color: darkblue;
+  }
+
+  .cell.visible.five {
+    color: darkred;
+  }
+
+  .cell.visible.six {
+    color: darkcyan;
+  }
+
+  .cell.visible.seven {
+    color: black;
+  }
+  
+  .cell.visible.eight {
+    color: gray;
+  } 
   /*
   .cell:hover {
     background-color: blueviolet;

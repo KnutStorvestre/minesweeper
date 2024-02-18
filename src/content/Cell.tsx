@@ -21,13 +21,13 @@ const Cell: React.FC<CellProps> = ({
       className={classNames("cell", {
         visible: visible,
         one: visible && value === 1,
-        //two: visible && value === 2,
-        //three: visible && value === 3,
-        //four: visible && value === 4,
-        //five: visible && value === 5,
-        // six: visible && value === 6,
-        //seven: visible && value === 7,
-        //eight: visible && value === 8,
+        two: visible && value === 2,
+        three: visible && value === 3,
+        four: visible && value === 4,
+        five: visible && value === 5,
+        six: visible && value === 6,
+        seven: visible && value === 7,
+        eight: visible && value === 8,
       })}
       onClick={onCellClick}
       onContextMenu={onRightClick}
