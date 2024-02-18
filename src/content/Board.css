@@ -17,9 +17,8 @@
   border: 1px solid #666;
   background-color: lightgray;
   display: flex;
-  align-items: center;
   justify-content: center;
-  cursor: pointer;
+  align-items: center;
 }
 
 .cell:hover {

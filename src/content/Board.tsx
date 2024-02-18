@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "../utils/getNeighbors";
 import "./Board.css";
 import getNeighbors from "../utils/getNeighbors";

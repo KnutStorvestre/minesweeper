@@ -1,6 +1,6 @@
 import Board from "./content/Board";
 import generateBoard from "./utils/generateBoard.ts";
-
+import "./App.css";
 export default function App() {
   // Beginner difficulty
   // 10 mines on a 9x9 grid
@@ -17,5 +17,9 @@ export default function App() {
 
   const grid = generateBoard(numRows, numColumns, numMines);
 
-  return <Board numRows={numRows} numCols={numColumns} grid={grid} />;
+  return (
+    <div className="board-container">
+      <Board numRows={numRows} numCols={numColumns} grid={grid} />
+    </div>
+  );
 }
