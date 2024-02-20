@@ -1,6 +1,8 @@
 import Board from "./content/Board";
+import Header from "./content/Header";
 import generateBoard from "./utils/generateBoard.ts";
 import "./App.css";
+
 export default function App() {
   // Beginner difficulty
   // 10 mines on a 9x9 grid
@@ -31,7 +33,11 @@ export default function App() {
 
   return (
     <div className="board-container">
-      <h1>Minesweeper</h1>
+      <Header
+        minesRemaining={numMines}
+        isGameOver={false}
+        onRestart={() => {}}
+      />
       <Board numRows={numRows} numCols={numColumns} grid={grid} />
     </div>
   );
