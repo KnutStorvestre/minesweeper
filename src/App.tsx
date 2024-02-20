@@ -1,7 +1,4 @@
-import Board from "./content/Board";
-import Header from "./content/Header";
-import generateBoard from "./utils/generateBoard.ts";
-import "./App.css";
+import Game from "./content/Game";
 
 export default function App() {
   // Beginner difficulty
@@ -17,8 +14,6 @@ export default function App() {
   const numColumns = 30;
   const numMines = 99;
 
-  const grid = generateBoard(numRows, numColumns, numMines);
-
   // TODO Board component:
   // Implement a game over state
   // Implement a win state
@@ -31,14 +26,5 @@ export default function App() {
   // Add extra realism
   // score board - but no nasty names
 
-  return (
-    <div className="board-container">
-      <Header
-        minesRemaining={numMines}
-        isGameOver={false}
-        onRestart={() => {}}
-      />
-      <Board numRows={numRows} numCols={numColumns} grid={grid} />
-    </div>
-  );
+  return <Game rows={numRows} columns={numColumns} mines={numMines} />;
 }
