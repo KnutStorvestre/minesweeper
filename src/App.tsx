@@ -17,8 +17,21 @@ export default function App() {
 
   const grid = generateBoard(numRows, numColumns, numMines);
 
+  // TODO Board component:
+  // Implement a game over state
+  // Implement a win state
+  // sprite for mine
+
+  // TODO Header component:
+  // number flags left
+
+  // Bonus:
+  // Add extra realism
+  // score board - but no nasty names
+
   return (
     <div className="board-container">
+      <h1>Minesweeper</h1>
       <Board numRows={numRows} numCols={numColumns} grid={grid} />
     </div>
   );
