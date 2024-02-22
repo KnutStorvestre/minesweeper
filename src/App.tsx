@@ -14,6 +14,10 @@ export default function App() {
   const numColumns = 30;
   const numMines = 99;
 
+  // TODO Game component:
+  // width of game on Expert difficulty
+  // 40px x 30 = 1200px
+
   // TODO Board component:
   // Implement a game over state
   // Implement a win state
@@ -25,6 +29,8 @@ export default function App() {
   // Bonus:
   // Add extra realism
   // score board - but no nasty names
+  // select cells with keyboard
+  // add a timer when it runs out you lose
 
   return <Game rows={numRows} columns={numColumns} mines={numMines} />;
 }

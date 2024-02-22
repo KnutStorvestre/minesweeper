@@ -1,0 +1,37 @@
+.header-container {
+    position: relative;
+    width: 1200px;
+    height: 80px;
+    background-color: blue;
+}
+
+.flags {
+    position: absolute;
+    top: 50%;
+    left: 60px;
+    width: 60px;
+    height: 40px;
+    background-color: red; /* Color for the smaller box */
+    transform: translate(-50%, -50%);
+}
+
+.status {
+    position: absolute;
+    top: 50%;
+    left: 600px;
+    width: 60px;
+    height: 40px;
+    background-color: green;
+    transform: translate(-50%, -50%);
+}
+
+.timer {
+    position: absolute;
+    top: 50%;
+    right: 0px;
+    width: 60px;
+    height: 40px;
+    background-color: black;
+    transform: translate(-50%, -50%);
+}
+
