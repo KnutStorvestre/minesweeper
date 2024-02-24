@@ -5,7 +5,7 @@
     background-color: blue;
 }
 
-.flags {
+.flags-container {
     position: absolute;
     top: 50%;
     left: 60px;
@@ -15,7 +15,7 @@
     transform: translate(-50%, -50%);
 }
 
-.status {
+.status-container {
     position: absolute;
     top: 50%;
     left: 600px;
@@ -25,7 +25,7 @@
     transform: translate(-50%, -50%);
 }
 
-.timer {
+.timer-container {
     position: absolute;
     top: 50%;
     right: 0px;
@@ -35,7 +35,7 @@
     transform: translate(-50%, -50%);
 }
 
-.timer span {
+.timer-container span {
     color: red;
     font-family: "Audiowide", sans-serif;
     font-weight: 400;

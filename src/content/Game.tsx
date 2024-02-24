@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Board from "./Board";
 import Header from "./Header";
 import generateBoard from "../utils/generateBoard.ts";
@@ -10,9 +11,20 @@ interface GameProps {
 }
 
 const Game: React.FC<GameProps> = ({ rows, columns, mines }) => {
+  const [key, setKey] = useState(0);
+
+  const onRestart = () => {
+    setKey((prev) => prev + 1);
+  };
+
   return (
-    <div className="game-container">
-      <Header minesRemaining={mines} isGameOver={false} onRestart={() => {}} />
+    <div className="game-container" key={key}>
+      <Header
+        minesRemaining={mines}
+        isGameStarted={false}
+        isGameOver={false}
+        onRestart={() => onRestart()}
+      />
       <Board
         numRows={rows}
         numCols={columns}

@@ -3,6 +3,7 @@ import "./Header.css";
 
 interface HeaderProps {
   minesRemaining: number;
+  isGameStarted: boolean;
   isGameOver: boolean;
   onRestart: () => void;
 }
@@ -15,9 +16,11 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   return (
     <div className="header-container">
-      <div className="flags" />
-      <div className="status" />
-      <div className="timer">
+      <div className="flags-container" />
+      <div className="status-container">
+        <button onClick={onRestart}>restart</button>
+      </div>
+      <div className="timer-container">
         <Timer />
       </div>
     </div>
@@ -25,7 +28,7 @@ const Header: React.FC<HeaderProps> = ({
 };
 
 function Timer() {
-  const [timer, setTimer] = useState(995);
+  const [timer, setTimer] = useState(0);
 
   useEffect(() => {
     if (timer < 999) {
@@ -45,14 +48,3 @@ function Timer() {
 }
 
 export default Header;
-
-/*
- <div className="logo">Minesweeper</div>
-      <div className="info">
-        <div className="mines-remaining">Mines Remaining: {minesRemaining}</div>
-        {isGameOver && <div className="game-over">Game Over!</div>}
-        <button className="restart-button" onClick={onRestart}>
-          Restart
-        </button>
-      </div>
-      */
