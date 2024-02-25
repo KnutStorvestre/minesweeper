@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import "./Header.css";
 
 interface HeaderProps {
-  minesRemaining: number;
+  flagsLeft: number;
   isGameInProgress: () => boolean;
   onRestart: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({
-  minesRemaining,
+  flagsLeft,
   isGameInProgress,
   onRestart,
 }) => {

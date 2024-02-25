@@ -37,7 +37,7 @@ const Game: React.FC<GameProps> = ({ rows, columns, mines }) => {
   return (
     <div className="game-container" key={key}>
       <Header
-        minesRemaining={mines}
+        flagsLeft={mines}
         isGameInProgress={isGameInProgress}
         onRestart={() => onRestart()}
       />
