@@ -23,11 +23,15 @@ const Game: React.FC<GameProps> = ({ rows, columns, mines }) => {
     setGameStarted(true);
   };
 
+  const getGameStarted = () => {
+    return gameStarted;
+  };
+
   return (
     <div className="game-container" key={key}>
       <Header
         minesRemaining={mines}
-        isGameStarted={gameStarted}
+        isGameStarted={getGameStarted}
         isGameOver={gameOver}
         onRestart={() => onRestart()}
       />

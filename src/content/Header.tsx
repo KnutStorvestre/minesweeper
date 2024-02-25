@@ -3,7 +3,7 @@ import "./Header.css";
 
 interface HeaderProps {
   minesRemaining: number;
-  isGameStarted: boolean;
+  isGameStarted: () => boolean;
   isGameOver: boolean;
   onRestart: () => void;
 }
@@ -27,14 +27,14 @@ const Header: React.FC<HeaderProps> = ({
   );
 };
 
-const Timer: React.FC<{ gameStarted: boolean; gameOver: boolean }> = ({
+const Timer: React.FC<{ gameStarted: () => boolean; gameOver: boolean }> = ({
   gameStarted,
   gameOver,
 }) => {
   const [timer, setTimer] = useState(0);
 
   useEffect(() => {
-    if (timer < 999 && gameStarted && !gameOver) {
+    if (timer < 999 && gameStarted() && !gameOver) {
       const interval = setInterval(() => {
         setTimer((prev) => prev + 1);
       }, 1000);
@@ -43,7 +43,7 @@ const Timer: React.FC<{ gameStarted: boolean; gameOver: boolean }> = ({
         clearInterval(interval);
       };
     }
-  }, [timer]);
+  }, [timer, gameStarted, gameOver]);
 
   const formattedTime = String(timer).padStart(3, "0");
 
