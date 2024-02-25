@@ -11,35 +11,41 @@ interface GameProps {
 }
 
 const Game: React.FC<GameProps> = ({ rows, columns, mines }) => {
-  const [key, setKey] = useState(0);
-  const [gameStarted, setGameStarted] = useState(false);
-  const [gameOver, setGameOver] = useState(false);
+  enum GameStatus {
+    NotStarted = "notStarted",
+    InProgress = "inProgress",
+    Won = "won",
+    Lost = "lost",
+  }
 
-  const onRestart = () => {
-    setKey((prev) => prev + 1);
-  };
+  const [gameStatus, setGameStatus] = useState(GameStatus.NotStarted);
 
   const handleStartGame = () => {
-    setGameStarted(true);
+    setGameStatus(GameStatus.InProgress);
   };
 
-  const getGameStarted = () => {
-    return gameStarted;
+  const isGameInProgress = () => {
+    return gameStatus === GameStatus.InProgress;
+  };
+
+  const [key, setKey] = useState(0);
+  const onRestart = () => {
+    setKey((prev) => prev + 1);
+    setGameStatus(GameStatus.NotStarted);
   };
 
   return (
     <div className="game-container" key={key}>
       <Header
         minesRemaining={mines}
-        isGameStarted={getGameStarted}
-        isGameOver={gameOver}
+        isGameInProgress={isGameInProgress}
         onRestart={() => onRestart()}
       />
       <Board
         numRows={rows}
         numCols={columns}
         grid={generateBoard(rows, columns, mines)}
-        gameStarted={gameStarted}
+        isGameStarted={isGameInProgress}
         onStartGame={handleStartGame}
       />
     </div>

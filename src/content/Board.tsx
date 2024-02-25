@@ -8,7 +8,7 @@ interface BoardProps {
   numRows: number;
   numCols: number;
   grid: number[];
-  gameStarted: boolean;
+  isGameStarted: () => boolean;
   onStartGame: () => void;
 }
 
@@ -16,7 +16,7 @@ const Board: React.FC<BoardProps> = ({
   numRows,
   numCols,
   grid,
-  gameStarted,
+  isGameStarted,
   onStartGame,
 }) => {
   const handleFirstClick = () => {
@@ -33,7 +33,7 @@ const Board: React.FC<BoardProps> = ({
     if (isVisible[i] || isFlagged[i]) {
       return;
     }
-    if (!gameStarted) {
+    if (!isGameStarted()) {
       handleFirstClick();
     }
     const newIsVisible = [...isVisible];

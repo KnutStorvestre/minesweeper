@@ -3,15 +3,13 @@ import "./Header.css";
 
 interface HeaderProps {
   minesRemaining: number;
-  isGameStarted: () => boolean;
-  isGameOver: boolean;
+  isGameInProgress: () => boolean;
   onRestart: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({
   minesRemaining,
-  isGameStarted,
-  isGameOver,
+  isGameInProgress,
   onRestart,
 }) => {
   return (
@@ -21,20 +19,19 @@ const Header: React.FC<HeaderProps> = ({
         <button onClick={onRestart}>restart</button>
       </div>
       <div className="timer-container">
-        <Timer gameStarted={isGameStarted} gameOver={isGameOver} />
+        <Timer isGameInProgress={isGameInProgress} />
       </div>
     </div>
   );
 };
 
-const Timer: React.FC<{ gameStarted: () => boolean; gameOver: boolean }> = ({
-  gameStarted,
-  gameOver,
+const Timer: React.FC<{ isGameInProgress: () => boolean }> = ({
+  isGameInProgress,
 }) => {
   const [timer, setTimer] = useState(0);
 
   useEffect(() => {
-    if (timer < 999 && gameStarted() && !gameOver) {
+    if (timer < 999 && isGameInProgress()) {
       const interval = setInterval(() => {
         setTimer((prev) => prev + 1);
       }, 1000);
@@ -43,7 +40,7 @@ const Timer: React.FC<{ gameStarted: () => boolean; gameOver: boolean }> = ({
         clearInterval(interval);
       };
     }
-  }, [timer, gameStarted, gameOver]);
+  }, [timer, isGameInProgress]);
 
   const formattedTime = String(timer).padStart(3, "0");
 
