@@ -21,17 +21,20 @@ const Header: React.FC<HeaderProps> = ({
         <button onClick={onRestart}>restart</button>
       </div>
       <div className="timer-container">
-        <Timer />
+        <Timer gameStarted={isGameStarted} gameOver={isGameOver} />
       </div>
     </div>
   );
 };
 
-function Timer() {
+const Timer: React.FC<{ gameStarted: boolean; gameOver: boolean }> = ({
+  gameStarted,
+  gameOver,
+}) => {
   const [timer, setTimer] = useState(0);
 
   useEffect(() => {
-    if (timer < 999) {
+    if (timer < 999 && gameStarted && !gameOver) {
       const interval = setInterval(() => {
         setTimer((prev) => prev + 1);
       }, 1000);
@@ -45,6 +48,6 @@ function Timer() {
   const formattedTime = String(timer).padStart(3, "0");
 
   return <span>{formattedTime}</span>;
-}
+};
 
 export default Header;

@@ -8,9 +8,20 @@ interface BoardProps {
   numRows: number;
   numCols: number;
   grid: number[];
+  gameStarted: boolean;
+  onStartGame: () => void;
 }
 
-const Board: React.FC<BoardProps> = ({ numRows, numCols, grid }) => {
+const Board: React.FC<BoardProps> = ({
+  numRows,
+  numCols,
+  grid,
+  gameStarted,
+  onStartGame,
+}) => {
+  const handleFirstClick = () => {
+    onStartGame();
+  };
   const [isVisible, setIsVisible] = useState<boolean[]>(
     Array(numRows * numCols).fill(false)
   );
@@ -21,6 +32,9 @@ const Board: React.FC<BoardProps> = ({ numRows, numCols, grid }) => {
   function handleClick(i: number) {
     if (isVisible[i] || isFlagged[i]) {
       return;
+    }
+    if (!gameStarted) {
+      handleFirstClick();
     }
     const newIsVisible = [...isVisible];
     const newGrid = [...grid];

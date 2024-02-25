@@ -12,23 +12,31 @@ interface GameProps {
 
 const Game: React.FC<GameProps> = ({ rows, columns, mines }) => {
   const [key, setKey] = useState(0);
+  const [gameStarted, setGameStarted] = useState(false);
+  const [gameOver, setGameOver] = useState(false);
 
   const onRestart = () => {
     setKey((prev) => prev + 1);
+  };
+
+  const handleStartGame = () => {
+    setGameStarted(true);
   };
 
   return (
     <div className="game-container" key={key}>
       <Header
         minesRemaining={mines}
-        isGameStarted={false}
-        isGameOver={false}
+        isGameStarted={gameStarted}
+        isGameOver={gameOver}
         onRestart={() => onRestart()}
       />
       <Board
         numRows={rows}
         numCols={columns}
         grid={generateBoard(rows, columns, mines)}
+        gameStarted={gameStarted}
+        onStartGame={handleStartGame}
       />
     </div>
   );
