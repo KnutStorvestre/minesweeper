@@ -28,6 +28,11 @@ const Game: React.FC<GameProps> = ({ rows, columns, mines }) => {
     return gameStatus === GameStatus.InProgress;
   };
 
+  const [flagsCount, setFlagCount] = useState(mines);
+  const handleFlagChange = (flagChange: number) => {
+    setFlagCount((prev) => prev + flagChange);
+  };
+
   const [key, setKey] = useState(0);
   const onRestart = () => {
     setKey((prev) => prev + 1);
@@ -37,7 +42,8 @@ const Game: React.FC<GameProps> = ({ rows, columns, mines }) => {
   return (
     <div className="game-container" key={key}>
       <Header
-        flagsLeft={mines}
+        flagsLeft={flagsCount}
+        handleFlagChange={handleFlagChange}
         isGameInProgress={isGameInProgress}
         onRestart={() => onRestart()}
       />

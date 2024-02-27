@@ -11,8 +11,16 @@
     left: 60px;
     width: 60px;
     height: 40px;
-    background-color: red; /* Color for the smaller box */
+    background-color: black; /* Color for the smaller box */
     transform: translate(-50%, -50%);
+}
+
+.flags-container span {
+    color: red;
+    font-family: "Audiowide", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 24px;
 }
 
 .status-container {
@@ -41,6 +49,5 @@
     font-weight: 400;
     font-style: normal;
     font-size: 24px;
-
 }
 

@@ -3,18 +3,22 @@ import "./Header.css";
 
 interface HeaderProps {
   flagsLeft: number;
+  handleFlagChange: (change: number) => void;
   isGameInProgress: () => boolean;
   onRestart: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({
   flagsLeft,
+  handleFlagChange,
   isGameInProgress,
   onRestart,
 }) => {
   return (
     <div className="header-container">
-      <div className="flags-container" />
+      <div className="flags-container">
+        <span>{String(flagsLeft).padStart(2, "0")}</span>
+      </div>
       <div className="status-container">
         <button onClick={onRestart}>restart</button>
       </div>
