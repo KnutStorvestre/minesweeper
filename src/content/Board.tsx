@@ -1,3 +1,4 @@
+// import { useState, useCallback } from "react";
 import { useState } from "react";
 import "../utils/getNeighbors";
 import getNeighbors from "../utils/getNeighbors";
@@ -10,6 +11,7 @@ interface BoardProps {
   grid: number[];
   isGameStarted: () => boolean;
   onStartGame: () => void;
+  onFlagChange: (flagChange: number) => void;
 }
 
 const Board: React.FC<BoardProps> = ({
@@ -18,6 +20,7 @@ const Board: React.FC<BoardProps> = ({
   grid,
   isGameStarted,
   onStartGame,
+  onFlagChange,
 }) => {
   const handleFirstClick = () => {
     onStartGame();
@@ -52,7 +55,9 @@ const Board: React.FC<BoardProps> = ({
     if (isVisible[i]) {
       return;
     }
-    // toggle flag
+
+    onFlagChange(isFlagged[i] ? 1 : -1);
+
     const newIsFlagged = [...isFlagged];
     newIsFlagged[i] = !newIsFlagged[i];
     setIsFlagged(newIsFlagged);

@@ -1,8 +1,16 @@
-import { useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import Board from "./Board";
 import Header from "./Header";
+import useFlagCount from "./hooks/useFlagCount";
 import generateBoard from "../utils/generateBoard.ts";
 import "./Game.css";
+
+enum GameStatus {
+  NotStarted = "notStarted",
+  InProgress = "inProgress",
+  Won = "won",
+  Lost = "lost",
+}
 
 interface GameProps {
   rows: number;
@@ -11,48 +19,45 @@ interface GameProps {
 }
 
 const Game: React.FC<GameProps> = ({ rows, columns, mines }) => {
-  enum GameStatus {
-    NotStarted = "notStarted",
-    InProgress = "inProgress",
-    Won = "won",
-    Lost = "lost",
-  }
-
   const [gameStatus, setGameStatus] = useState(GameStatus.NotStarted);
-
-  const handleStartGame = () => {
-    setGameStatus(GameStatus.InProgress);
-  };
-
-  const isGameInProgress = () => {
-    return gameStatus === GameStatus.InProgress;
-  };
-
-  const [flagsCount, setFlagCount] = useState(mines);
-  const handleFlagChange = (flagChange: number) => {
-    setFlagCount((prev) => prev + flagChange);
-  };
-
+  const [flagsCount, handleFlagChange] = useFlagCount(mines);
   const [key, setKey] = useState(0);
-  const onRestart = () => {
+  // We use an arrow function because React treats this as a lazy initialization
+  // so it will only be called once when the component mounts
+  const [grid, setGrid] = useState(() => generateBoard(rows, columns, mines));
+
+  const handleStartGame = useCallback(() => {
+    setGameStatus(GameStatus.InProgress);
+  }, []);
+
+  const isGameInProgress = useCallback(() => {
+    return gameStatus === GameStatus.InProgress;
+  }, [gameStatus]);
+
+  const onRestart = useCallback(() => {
     setKey((prev) => prev + 1);
     setGameStatus(GameStatus.NotStarted);
-  };
+    setGrid(generateBoard(rows, columns, mines));
+  }, [rows, columns, mines]);
+
+  useEffect(() => {
+    // Any side effects related to game status change can go here
+  }, [gameStatus]);
 
   return (
     <div className="game-container" key={key}>
       <Header
         flagsLeft={flagsCount}
-        handleFlagChange={handleFlagChange}
         isGameInProgress={isGameInProgress}
-        onRestart={() => onRestart()}
+        onRestart={onRestart}
       />
       <Board
         numRows={rows}
         numCols={columns}
-        grid={generateBoard(rows, columns, mines)}
+        grid={grid}
         isGameStarted={isGameInProgress}
         onStartGame={handleStartGame}
+        onFlagChange={handleFlagChange}
       />
     </div>
   );

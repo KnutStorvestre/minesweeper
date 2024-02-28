@@ -3,14 +3,12 @@ import "./Header.css";
 
 interface HeaderProps {
   flagsLeft: number;
-  handleFlagChange: (change: number) => void;
   isGameInProgress: () => boolean;
   onRestart: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({
   flagsLeft,
-  handleFlagChange,
   isGameInProgress,
   onRestart,
 }) => {
