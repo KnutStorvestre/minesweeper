@@ -1,6 +1,6 @@
 import getNeighbors from "./getNeighbors";
 
-export default function generateBoard(
+function generateBoard(
   numRows: number,
   numCols: number,
   numMines: number
@@ -38,3 +38,5 @@ function incrementNeighborCells(
     }
   }
 }
+
+export default generateBoard;

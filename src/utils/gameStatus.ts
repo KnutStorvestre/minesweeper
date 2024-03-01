@@ -1,8 +1,8 @@
-enum GameStatus {
+enum gameStatus {
     NotStarted = "notStarted",
     InProgress = "inProgress",
     Won = "won",
     Lost = "lost",
   }
 
-export default GameStatus;
+export default gameStatus;

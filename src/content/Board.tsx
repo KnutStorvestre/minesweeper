@@ -9,8 +9,12 @@ interface BoardProps {
   numCols: number;
   grid: number[];
   isGameStarted: () => boolean;
-  onStartGame: () => void;
+  isGameLost: () => boolean;
+  isGameWon: () => boolean;
   onFlagChange: (flagChange: number) => void;
+  onStartGame: () => void;
+  onVictory: () => void;
+  onLoss: () => void;
 }
 
 const Board: React.FC<BoardProps> = ({
@@ -18,8 +22,12 @@ const Board: React.FC<BoardProps> = ({
   numCols,
   grid,
   isGameStarted,
-  onStartGame,
+  isGameLost,
+  isGameWon,
   onFlagChange,
+  onStartGame,
+  onVictory,
+  onLoss,
 }) => {
   const handleFirstClick = () => {
     onStartGame();
@@ -32,7 +40,7 @@ const Board: React.FC<BoardProps> = ({
   );
 
   function handleClick(i: number) {
-    if (isVisible[i] || isFlagged[i]) {
+    if (isVisible[i] || isFlagged[i] || isGameLost() || isGameWon()) {
       return;
     }
     if (!isGameStarted()) {
@@ -44,14 +52,14 @@ const Board: React.FC<BoardProps> = ({
     setIsVisible(newIsVisible);
     if (grid[i] === 0) {
       setNullCellsVisible(i, newIsVisible, newGrid);
-    } else {
-      setIsVisible(newIsVisible);
+    } else if (grid[i] === -1) {
+      onLoss();
     }
   }
 
   const handleRightClick = (event: React.MouseEvent, i: number) => {
     event.preventDefault();
-    if (isVisible[i]) {
+    if (isVisible[i] || !isGameStarted()) {
       return;
     }
 

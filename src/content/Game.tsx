@@ -2,8 +2,8 @@ import { useCallback, useState, useEffect } from "react";
 import Board from "./Board";
 import Header from "./Header";
 import useFlagCount from "./hooks/useFlagCount";
-import generateBoard from "../utils/generateBoard.ts";
-import GameStatus from "../utils/GameStatus.ts";
+import generateBoard from "../utils/generateBoard";
+import GameStatus from "../utils/gameStatus";
 import "./Game.css";
 
 interface GameProps {
@@ -20,10 +20,6 @@ const Game: React.FC<GameProps> = ({ rows, columns, mines }) => {
   // so it will only be called once when the component mounts
   const [grid, setGrid] = useState(() => generateBoard(rows, columns, mines));
 
-  const handleStartGame = useCallback(() => {
-    setGameStatus(GameStatus.InProgress);
-  }, []);
-
   const isGameInProgress = useCallback(() => {
     return gameStatus === GameStatus.InProgress;
   }, [gameStatus]);
@@ -36,7 +32,15 @@ const Game: React.FC<GameProps> = ({ rows, columns, mines }) => {
   }, [rows, columns, mines]);
 
   useEffect(() => {
-    // Any side effects related to game status change can go here
+    if (gameStatus === GameStatus.InProgress) {
+      console.log("Game started");
+    } else if (gameStatus === GameStatus.Won) {
+      console.log("Game won");
+    } else if (gameStatus === GameStatus.Lost) {
+      console.log("Game lost");
+    } else {
+      console.log("Game not started");
+    }
   }, [gameStatus]);
 
   return (
@@ -51,8 +55,13 @@ const Game: React.FC<GameProps> = ({ rows, columns, mines }) => {
         numCols={columns}
         grid={grid}
         isGameStarted={isGameInProgress}
-        onStartGame={handleStartGame}
+        isGameLost={() => gameStatus === GameStatus.Lost}
+        isGameWon={() => gameStatus === GameStatus.Won}
         onFlagChange={handleFlagChange}
+        // Doing it this way instead of using useCallback to memoize the function can be a performance hit but makes the code easier to read
+        onStartGame={() => setGameStatus(GameStatus.InProgress)}
+        onVictory={() => setGameStatus(GameStatus.Won)}
+        onLoss={() => setGameStatus(GameStatus.Lost)}
       />
     </div>
   );
