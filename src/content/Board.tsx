@@ -7,6 +7,7 @@ import "./Board.css";
 interface BoardProps {
   numRows: number;
   numCols: number;
+  numMines: number;
   grid: number[];
   isGameStarted: () => boolean;
   isGameLost: () => boolean;
@@ -20,6 +21,7 @@ interface BoardProps {
 const Board: React.FC<BoardProps> = ({
   numRows,
   numCols,
+  numMines,
   grid,
   isGameStarted,
   isGameLost,
@@ -73,7 +75,12 @@ const Board: React.FC<BoardProps> = ({
     if (isVisible[i] || !isGameStarted()) {
       return;
     }
+    // TODO is this function too expensive?
+    if (!isFlagged[i] && isFlagged.filter((flag) => flag).length === numMines) {
+      return;
+    }
 
+    // TODO you can only flag as many cells as there are mines
     onFlagChange(isFlagged[i] ? 1 : -1);
 
     const newIsFlagged = [...isFlagged];

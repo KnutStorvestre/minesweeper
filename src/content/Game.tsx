@@ -24,9 +24,6 @@ const Game: React.FC<GameProps> = ({ rows, columns, mines }) => {
   // TODO mines you were able to flag appears with green background when game is lost or won
   // TODO is the win condition when all non-mine cells are visible and all mines are flagged or when all mines are flagged?
 
-  // copilot create flag emoji here 🚩
-  // copilot create bomb emoji here 💣
-
   const isGameInProgress = useCallback(() => {
     return gameStatus === GameStatus.InProgress;
   }, [gameStatus]);
@@ -60,6 +57,7 @@ const Game: React.FC<GameProps> = ({ rows, columns, mines }) => {
       <Board
         numRows={rows}
         numCols={columns}
+        numMines={mines}
         grid={grid}
         isGameStarted={isGameInProgress}
         isGameLost={() => gameStatus === GameStatus.Lost}
