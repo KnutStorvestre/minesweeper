@@ -54,7 +54,18 @@ const Board: React.FC<BoardProps> = ({
       setNullCellsVisible(i, newIsVisible, newGrid);
     } else if (grid[i] === -1) {
       onLoss();
+      setAllMinesVisible();
     }
+  }
+
+  function setAllMinesVisible() {
+    const newIsVisible = [...isVisible];
+    for (let i = 0; i < grid.length; i++) {
+      if (grid[i] === -1) {
+        newIsVisible[i] = true;
+      }
+    }
+    setIsVisible(newIsVisible);
   }
 
   const handleRightClick = (event: React.MouseEvent, i: number) => {
