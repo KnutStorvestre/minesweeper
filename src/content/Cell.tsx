@@ -16,6 +16,18 @@ const Cell: React.FC<CellProps> = ({
   onCellClick,
   onRightClick,
 }) => {
+  const renderCellContent = () => {
+    if (!visible) {
+      return flagged ? "🚩" : null;
+    }
+
+    if (value === 0) {
+      return null;
+    }
+
+    return value === -1 ? "💣" : value;
+  };
+
   return (
     <button
       className={classNames("cell", {
@@ -32,15 +44,7 @@ const Cell: React.FC<CellProps> = ({
       onClick={onCellClick}
       onContextMenu={onRightClick}
     >
-      {visible
-        ? value !== 0
-          ? value !== -1
-            ? value
-            : "💣"
-          : null
-        : flagged
-        ? "🚩"
-        : null}
+      {renderCellContent()}
     </button>
   );
 };
