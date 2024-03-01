@@ -124,6 +124,7 @@ const Board: React.FC<BoardProps> = ({
           flagged={isFlagged[cellNum]}
           onCellClick={() => handleClick(cellNum)}
           onRightClick={(event) => handleRightClick(event, cellNum)}
+          // Change background color to red if game is lost by pressing this cell and it's a mine
         />
       );
     }
