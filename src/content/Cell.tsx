@@ -32,7 +32,15 @@ const Cell: React.FC<CellProps> = ({
       onClick={onCellClick}
       onContextMenu={onRightClick}
     >
-      {visible ? (value !== 0 ? value : null) : flagged ? "🚩" : null}
+      {visible
+        ? value !== 0
+          ? value !== -1
+            ? value
+            : "💣"
+          : null
+        : flagged
+        ? "🚩"
+        : null}
     </button>
   );
 };

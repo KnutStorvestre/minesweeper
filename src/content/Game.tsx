@@ -20,6 +20,13 @@ const Game: React.FC<GameProps> = ({ rows, columns, mines }) => {
   // so it will only be called once when the component mounts
   const [grid, setGrid] = useState(() => generateBoard(rows, columns, mines));
 
+  // TODO get custom message for how many mines you were able to flag
+  // TODO mines you were able to flag appears with green background when game is lost or won
+  // TODO is the win condition when all non-mine cells are visible and all mines are flagged or when all mines are flagged?
+
+  // copilot create flag emoji here 🚩
+  // copilot create bomb emoji here 💣
+
   const isGameInProgress = useCallback(() => {
     return gameStatus === GameStatus.InProgress;
   }, [gameStatus]);

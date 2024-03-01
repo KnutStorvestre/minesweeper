@@ -1,5 +1,7 @@
 import getNeighbors from "./getNeighbors";
 
+// TODO: Maybe not generate mine patterns that are impossible to win without guessing
+
 function generateBoard(
   numRows: number,
   numCols: number,
