@@ -33,7 +33,7 @@ const Header: React.FC<HeaderProps> = ({
   return (
     <div className="header-container">
       <div className="flags-container">
-        <span>{String(flagsLeft).padStart(2, "0")}</span>
+        <span>{String(flagsLeft).padStart(3, "0")}</span>
       </div>
       <div className="status-container">
         <button onClick={onRestart} className="image-button">
