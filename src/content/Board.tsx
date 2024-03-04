@@ -9,24 +9,25 @@ interface BoardProps {
   numCols: number;
   numMines: number;
   grid: number[];
+  onFlagChange: (flagChange: number) => void;
   isGameStarted: () => boolean;
   isGameLost: () => boolean;
   isGameWon: () => boolean;
-  onFlagChange: (flagChange: number) => void;
   onStartGame: () => void;
   onVictory: () => void;
   onLoss: () => void;
 }
 
+// TODO implemented win
 const Board: React.FC<BoardProps> = ({
   numRows,
   numCols,
   numMines,
   grid,
+  onFlagChange,
   isGameStarted,
   isGameLost,
   isGameWon,
-  onFlagChange,
   onStartGame,
   onVictory,
   onLoss,
@@ -80,7 +81,6 @@ const Board: React.FC<BoardProps> = ({
       return;
     }
 
-    // TODO you can only flag as many cells as there are mines
     onFlagChange(isFlagged[i] ? 1 : -1);
 
     const newIsFlagged = [...isFlagged];

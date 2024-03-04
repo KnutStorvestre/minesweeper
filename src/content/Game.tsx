@@ -23,6 +23,9 @@ const Game: React.FC<GameProps> = ({ rows, columns, mines }) => {
   // TODO get custom message for how many mines you were able to flag
   // TODO mines you were able to flag appears with green background when game is lost or won
   // TODO is the win condition when all non-mine cells are visible and all mines are flagged or when all mines are flagged?
+  // TODO create a high score system
+  // TODO create a settings menu
+  // TODO create full screen mode / zen mode
 
   const isGameInProgress = useCallback(() => {
     return gameStatus === GameStatus.InProgress;
@@ -51,18 +54,18 @@ const Game: React.FC<GameProps> = ({ rows, columns, mines }) => {
     <div className="game-container" key={key}>
       <Header
         flagsLeft={flagsCount}
-        isGameInProgress={isGameInProgress}
         onRestart={onRestart}
+        gameStatus={gameStatus}
       />
       <Board
         numRows={rows}
         numCols={columns}
         numMines={mines}
         grid={grid}
+        onFlagChange={handleFlagChange}
         isGameStarted={isGameInProgress}
         isGameLost={() => gameStatus === GameStatus.Lost}
         isGameWon={() => gameStatus === GameStatus.Won}
-        onFlagChange={handleFlagChange}
         // Doing it this way instead of using useCallback to memoize the function can be a performance hit but makes the code easier to read
         onStartGame={() => setGameStatus(GameStatus.InProgress)}
         onVictory={() => setGameStatus(GameStatus.Won)}
