@@ -41,6 +41,7 @@ const Board: React.FC<BoardProps> = ({
   const [isFlagged, setIsFlagged] = useState<boolean[]>(
     Array(numRows * numCols).fill(false)
   );
+  const [flagCount, setFlagCount] = useState(0);
 
   function handleClick(i: number) {
     if (isVisible[i] || isFlagged[i] || isGameLost() || isGameWon()) {
@@ -58,6 +59,9 @@ const Board: React.FC<BoardProps> = ({
     } else if (grid[i] === -1) {
       onLoss();
       setAllMinesVisible();
+    }
+    if (flagCount === numMines) {
+      checkWinCondition();
     }
   }
 
@@ -77,16 +81,30 @@ const Board: React.FC<BoardProps> = ({
       return;
     }
     // TODO is this function too expensive?
-    if (!isFlagged[i] && isFlagged.filter((flag) => flag).length === numMines) {
+    if (!isFlagged[i] && flagCount === numMines) {
       return;
     }
 
+    const newFlagcount = flagCount + (isFlagged[i] ? -1 : 1);
+    setFlagCount(newFlagcount);
     onFlagChange(isFlagged[i] ? 1 : -1);
 
     const newIsFlagged = [...isFlagged];
     newIsFlagged[i] = !newIsFlagged[i];
     setIsFlagged(newIsFlagged);
+    if (newFlagcount === numMines) {
+      checkWinCondition();
+    }
   };
+
+  function checkWinCondition() {
+    const isVisibleCount = isVisible.reduce((count, currValue) => {
+      return currValue ? count + 1 : count;
+    }, 0);
+    if (isVisibleCount === numRows * numCols - numMines) {
+      onVictory();
+    }
+  }
 
   // Sets all cells with null value directly or indirectly around the index to visible
   // uses the DFS-algorithm

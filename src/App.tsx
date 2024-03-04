@@ -10,9 +10,9 @@ export default function App() {
   // Expert difficulty
   // 99 mines on a 16x30 grid
 
-  const numRows = 16;
-  const numColumns = 30;
-  const numMines = 99;
+  const numRows = 9;
+  const numColumns = 9;
+  const numMines = 10;
 
   // TODO Game component:
   // width of game on Expert difficulty
