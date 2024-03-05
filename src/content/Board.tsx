@@ -61,7 +61,7 @@ const Board: React.FC<BoardProps> = ({
       setAllMinesVisible();
     }
     if (flagCount === numMines) {
-      checkWinCondition();
+      checkWinCondition(newIsVisible);
     }
   }
 
@@ -93,12 +93,12 @@ const Board: React.FC<BoardProps> = ({
     newIsFlagged[i] = !newIsFlagged[i];
     setIsFlagged(newIsFlagged);
     if (newFlagcount === numMines) {
-      checkWinCondition();
+      checkWinCondition(isVisible);
     }
   };
 
-  function checkWinCondition() {
-    const isVisibleCount = isVisible.reduce((count, currValue) => {
+  function checkWinCondition(newIsVisible: boolean[]) {
+    const isVisibleCount = newIsVisible.reduce((count, currValue) => {
       return currValue ? count + 1 : count;
     }, 0);
     if (isVisibleCount === numRows * numCols - numMines) {
