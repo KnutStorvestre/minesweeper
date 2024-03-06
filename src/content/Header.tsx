@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import "./Header.css";
 import GameStatus from "../utils/gameStatus";
+import deadSmiley from "../assets/images/dead-smiley.png";
+import winSmiley from "../assets/images/win-smiley.png";
+import normalSmiley from "../assets/images/normal-smiley.png";
 
 interface HeaderProps {
   flagsLeft: number;
@@ -13,20 +16,18 @@ const Header: React.FC<HeaderProps> = ({
   onRestart,
   gameStatus,
 }) => {
-  const [statusImg, setStatusImg] = useState(
-    "src/assets/images/normal-smiley.png"
-  );
+  const [statusImg, setStatusImg] = useState(normalSmiley);
 
   useEffect(() => {
     switch (gameStatus) {
       case GameStatus.Won:
-        setStatusImg("src/assets/images/win-smiley.png");
+        setStatusImg(winSmiley);
         break;
       case GameStatus.Lost:
-        setStatusImg("src/assets/images/dead-smiley.png");
+        setStatusImg(deadSmiley);
         break;
       default:
-        setStatusImg("src/assets/images/normal-smiley.png");
+        setStatusImg(normalSmiley);
     }
   }, [gameStatus]);
 
