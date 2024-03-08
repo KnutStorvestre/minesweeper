@@ -1,3 +1,10 @@
+# How to play
+* Left click to make cell visible
+* Right click to flag
+* You win when all mines are flagged and all other cells are visible
+
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
