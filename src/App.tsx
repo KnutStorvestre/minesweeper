@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Game from "./content/Game";
-import DifficultySelector from "./content/SelectDifficulty";
+import DifficultySelector from "./content/DifficultySelector";
 
 type DifficultyLevel = "beginner" | "intermediate" | "expert";
 
@@ -20,7 +20,7 @@ export default function App() {
   const [difficulty, setDifficulty] = useState<DifficultyLevel | null>(null);
 
   return (
-    <div>
+    <div className={difficulty ? "" : "page-center"}>
       {difficulty ? (
         <Game
           rows={difficulties[difficulty].rows}

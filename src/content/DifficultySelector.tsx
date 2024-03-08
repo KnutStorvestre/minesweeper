@@ -1,4 +1,5 @@
 import React from "react";
+import "./DifficultySelector.css";
 
 type DifficultyLevel = "beginner" | "intermediate" | "expert";
 
@@ -10,8 +11,9 @@ const DifficultySelector: React.FC<DifficultySelectorProps> = ({
   onDifficultySelect,
 }) => {
   return (
-    <div>
-      <h2>Select Difficulty</h2>
+    <div className="difficulty-selector">
+      <h1>Minesweeper</h1>
+      <h3>Select Difficulty</h3>
       <button onClick={() => onDifficultySelect("beginner")}>Beginner</button>
       <button onClick={() => onDifficultySelect("intermediate")}>
         Intermediate
