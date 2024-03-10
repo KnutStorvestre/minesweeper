@@ -7,6 +7,7 @@
 - **Winning Condition:** You win when all mines are flagged and all other cells are open.
 
 ### Demo
+<!-- This is a demo.mp4 file -->
 https://github.com/KnutStorvestre/minesweeper/assets/46963193/2fc3cb01-d38f-4b81-b749-ab615f23353a
 
 ## Difficulty Levels
