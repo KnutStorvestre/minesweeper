@@ -18,6 +18,7 @@
 
 ## Installation and Running the Game
 ```bash
+# Installation steps
 git clone https://github.com/KnutStorvestre/minesweeper.git
 cd minesweeper
 npm install
