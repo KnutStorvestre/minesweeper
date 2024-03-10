@@ -16,3 +16,10 @@
 - Vite
 - Gimp
 
+## Installation and Running the Game
+```bash
+git clone https://github.com/KnutStorvestre/minesweeper.git
+cd minesweeper
+npm install
+npm run dev
+```
