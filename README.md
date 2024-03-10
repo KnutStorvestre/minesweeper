@@ -7,11 +7,7 @@
 - **Winning Condition:** You win when all mines are flagged and all other cells are open.
 
 ### Gameplay
-<img src="src/assets/images/gameplay2.gif" width="20%" height="20%"/>
-
-<!-- 
-![gameplay](src/assets/images/gameplay2.gif)
- -->
+https://github.com/KnutStorvestre/minesweeper/assets/46963193/5eb831ec-44f9-4bab-8ec4-cf36aa965abf
 
 ## Difficulty Levels
 - **Beginner**: 10 mines on a 9x9 grid.
