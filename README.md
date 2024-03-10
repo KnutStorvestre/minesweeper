@@ -3,9 +3,15 @@
 ## How to Play
 - **Left-click** to open a cell.
 - **Right-click** to flag a cell.
+- **Restart** by pressing the smiley.
 - **Winning Condition:** You win when all mines are flagged and all other cells are open.
 
-![gameplay](src/assets/images/gameplay.gif)
+### Gameplay
+<img src="src/assets/images/gameplay2.gif" width="20%" height="20%"/>
+
+<!-- 
+![gameplay](src/assets/images/gameplay2.gif)
+ -->
 
 ## Difficulty Levels
 - **Beginner**: 10 mines on a 9x9 grid.
