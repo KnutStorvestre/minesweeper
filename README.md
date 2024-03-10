@@ -3,7 +3,7 @@
 ## How to Play
 - **Left-click** to open a cell.
 - **Right-click** to flag a cell.
-- You win when all mines are flagged and all other cells are open.
+- **Winning Condition:** You win when all mines are flagged and all other cells are open.
 
 ## Difficulty Levels
 - **Beginner**: 10 mines on a 9x9 grid.
@@ -15,3 +15,4 @@
 - TypeScript
 - Vite
 - Gimp
+
