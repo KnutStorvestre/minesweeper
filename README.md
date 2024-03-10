@@ -9,8 +9,6 @@
 ### Demo
 https://github.com/KnutStorvestre/minesweeper/assets/46963193/2fc3cb01-d38f-4b81-b749-ab615f23353a
 
-
-
 ## Difficulty Levels
 - **Beginner**: 10 mines on a 9x9 grid.
 - **Intermediate**: 40 mines on a 16x16 grid.
@@ -24,7 +22,6 @@ https://github.com/KnutStorvestre/minesweeper/assets/46963193/2fc3cb01-d38f-4b81
 - node
 
 ## Prerequisites
-
 Before installing and running the game, ensure you have the following installed:
 - Node.js (Developed using version 21.6.2)
 - npm (typically comes with Node.js)
