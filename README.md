@@ -6,8 +6,10 @@
 - **Restart** by pressing the smiley.
 - **Winning Condition:** You win when all mines are flagged and all other cells are open.
 
-### Gameplay
-https://github.com/KnutStorvestre/minesweeper/assets/46963193/5eb831ec-44f9-4bab-8ec4-cf36aa965abf
+### Demo
+https://github.com/KnutStorvestre/minesweeper/assets/46963193/2fc3cb01-d38f-4b81-b749-ab615f23353a
+
+
 
 ## Difficulty Levels
 - **Beginner**: 10 mines on a 9x9 grid.
