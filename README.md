@@ -15,12 +15,31 @@
 - TypeScript
 - Vite
 - Gimp
+- node
+
+## Prerequisites
+
+Before installing and running the game, ensure you have the following installed:
+- Node.js (Developed using version 21.6.2)
+- npm (typically comes with Node.js)
+
+This project is built with the following technologies:
+- [React](https://reactjs.org/): A JavaScript library for building user interfaces.
+- [TypeScript](https://www.typescriptlang.org/): A typed superset of JavaScript that compiles to plain JavaScript.
+- [Vite](https://vitejs.dev/): A modern frontend build tool.
 
 ## Installation and Running the Game
+Follow these steps to install and run Minesweeper:
 ```bash
-# Installation steps
+# Clone the repository
 git clone https://github.com/KnutStorvestre/minesweeper.git
+
+# Change directory
 cd minesweeper
+
+# Install dependencies
 npm install
+
+# Run the game in development mode
 npm run dev
 ```
