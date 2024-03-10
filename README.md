@@ -20,7 +20,7 @@ https://github.com/KnutStorvestre/minesweeper/assets/46963193/2fc3cb01-d38f-4b81
 - TypeScript
 - Vite
 - Gimp
-- node
+- Node
 
 ## Prerequisites
 Before installing and running the game, ensure you have the following installed:
