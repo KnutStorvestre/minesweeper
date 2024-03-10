@@ -5,6 +5,8 @@
 - **Right-click** to flag a cell.
 - **Winning Condition:** You win when all mines are flagged and all other cells are open.
 
+![gameplay](src/assets/images/gameplay.gif)
+
 ## Difficulty Levels
 - **Beginner**: 10 mines on a 9x9 grid.
 - **Intermediate**: 40 mines on a 16x16 grid.
