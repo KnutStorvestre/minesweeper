@@ -1,15 +1,17 @@
-# How to play
-* Left-click to open cell
-* Right-click to flag cell
-* You win when all mines are flagged and all other cells are open
+# Minesweeper Game
 
-# Difficulty
-* Beginner: 10 mines on a 9x9 grid
-* Intermediate: 40 mines on a 16x16 grid
-* Expert: 99 mines on a 16x30 grid
+## How to Play
+- **Left-click** to open a cell.
+- **Right-click** to flag a cell.
+- You win when all mines are flagged and all other cells are open.
 
-# Tools
-* React
-* TypeScript
-* Vite
-* Gimp
+## Difficulty Levels
+- **Beginner**: 10 mines on a 9x9 grid.
+- **Intermediate**: 40 mines on a 16x16 grid.
+- **Expert**: 99 mines on a 16x30 grid.
+
+## Tools Used
+- React
+- TypeScript
+- Vite
+- Gimp
