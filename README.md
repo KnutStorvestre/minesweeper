@@ -1,37 +1,45 @@
-# How to play
-* Left click to make cell visible
-* Right click to flag
-* You win when all mines are flagged and all other cells are visible
+# Minesweeper Game
 
+## How to Play
+- **Left-click** to open a cell.
+- **Right-click** to flag a cell.
+- **Winning Condition:** You win when all mines are flagged and all other cells are open.
 
+## Difficulty Levels
+- **Beginner**: 10 mines on a 9x9 grid.
+- **Intermediate**: 40 mines on a 16x16 grid.
+- **Expert**: 99 mines on a 16x30 grid.
 
-# React + TypeScript + Vite
+## Tools Used
+- React
+- TypeScript
+- Vite
+- Gimp
+- node
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Prerequisites
 
-Currently, two official plugins are available:
+Before installing and running the game, ensure you have the following installed:
+- Node.js (Developed using version 21.6.2)
+- npm (typically comes with Node.js)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project is built with the following technologies:
+- [React](https://reactjs.org/): A JavaScript library for building user interfaces.
+- [TypeScript](https://www.typescriptlang.org/): A typed superset of JavaScript that compiles to plain JavaScript.
+- [Vite](https://vitejs.dev/): A modern frontend build tool.
 
-## Expanding the ESLint configuration
+## Installation and Running the Game
+Follow these steps to install and run Minesweeper:
+```bash
+# Clone the repository
+git clone https://github.com/KnutStorvestre/minesweeper.git
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+# Change directory
+cd minesweeper
 
-- Configure the top-level `parserOptions` property like this:
+# Install dependencies
+npm install
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+# Run the game in development mode
+npm run dev
 ```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
