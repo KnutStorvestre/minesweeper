@@ -1,7 +1,7 @@
 # How to play
-* Left click to make cell visible
-* Right click to flag
-* You win when all mines are flagged and all other cells are visible
+* Left-click to open cell
+* Right-click to flag cell
+* You win when all mines are flagged and all other cells are open
 
 # Difficulty
 * Beginner: 10 mines on a 9x9 grid
